@@ -22,7 +22,7 @@ def get_db():
 
 @app.post('/blog', status_code=status.HTTP_201_CREATED, tags=['blog'])
 async def create(body: schemas.Blog, db: Session = Depends(get_db)):
-    new_blog = models.Blog(title=body.title, body=body.body)
+    new_blog = models.Blog(title=body.title, body=body.body, user_id=body.user_id)
     db.add(new_blog)
     db.commit()
     db.refresh(new_blog)
