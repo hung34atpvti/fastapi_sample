@@ -4,7 +4,7 @@ from ..dtos.user_create_dto import UserCreateDTO
 from ..dtos.user_show_dto import UserShowDTO
 
 from ..repositories.user_repository import UserRepository
-from blog.utils.hashing import Hash
+from ..utils.hashing import Hash
 from sqlalchemy.orm import Session
 
 router = APIRouter(tags=['User'], prefix='/user')

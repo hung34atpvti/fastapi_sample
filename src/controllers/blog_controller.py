@@ -2,11 +2,11 @@ from typing import List
 
 from fastapi import APIRouter, status, HTTPException, Depends
 
-from blog.database.database import get_db
-from blog.dtos.blog_create_dto import BlogCreateDTO
-from blog.dtos.blog_show_dto import BlogShowDTO
-from blog.dtos.blog_update_dto import BlogUpdateDTO
-from blog.repositories.blog_repository import BlogRepository
+from ..database.database import get_db
+from ..dtos.blog_create_dto import BlogCreateDTO
+from ..dtos.blog_show_dto import BlogShowDTO
+from ..dtos.blog_update_dto import BlogUpdateDTO
+from ..repositories.blog_repository import BlogRepository
 
 from sqlalchemy.orm import Session
 

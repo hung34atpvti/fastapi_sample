@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from blog.database.database import engine, Base
+from .database.database import engine, Base
 from .controllers import blog_controller, user_controller
 
 app = FastAPI()

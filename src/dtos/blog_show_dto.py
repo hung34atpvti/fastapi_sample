@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from blog.dtos.user_show_dto import UserShowDTO
+from .user_show_dto import UserShowDTO
 
 
 class BlogShowDTO(BaseModel):
