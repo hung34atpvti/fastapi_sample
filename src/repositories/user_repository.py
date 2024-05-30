@@ -13,3 +13,7 @@ class UserRepository:
     async def show(self: Session, id):
         user = self.query(User).filter(User.id == id).first()
         return user
+
+    async def get_user_by_email(self: Session, email):
+        user = self.query(User).filter(User.email == email).first()
+        return user

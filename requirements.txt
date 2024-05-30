@@ -2,3 +2,4 @@ fastapi
 pydantic
 SQLAlchemy
 passlib[bcrypt]
+pyjwt
