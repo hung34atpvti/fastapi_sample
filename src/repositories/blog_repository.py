@@ -1,7 +1,5 @@
 from sqlalchemy.orm import Session
 
-from ..dtos.blog_create_dto import BlogCreateDTO
-from ..dtos.blog_update_dto import BlogUpdateDTO
 from ..models.blog import Blog
 
 
@@ -11,7 +9,7 @@ class BlogRepository:
         blogs = self.query(Blog).all()
         return blogs
 
-    async def create_one(self: Session, data: BlogCreateDTO):
+    async def create_one(self: Session, data):
         new_blog = Blog(title=data.title, body=data.body, user_id=data.user_id)
         self.add(new_blog)
         self.commit()
@@ -22,7 +20,7 @@ class BlogRepository:
         blog = self.query(Blog).filter(Blog.id == id).first()
         return blog
 
-    async def update_one(self: Session, id, data: BlogUpdateDTO):
+    async def update_one(self: Session, id, data):
         blog = self.query(Blog).filter(Blog.id == id)
         blog.update({'title': data.title, 'body': data.body})
         self.commit()

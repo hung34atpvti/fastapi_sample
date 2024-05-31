@@ -17,6 +17,6 @@ async def login(body: OAuth2PasswordRequestForm = Depends(), db: Session = Depen
     if not user or not Hash.verify(body.password, user.password):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Invalid credentials")
     access_token = jwt.create_access_token(
-        data={"sub": user.email}
+        data={"sub": user.email, "user_id": user.id}
     )
     return TokenDTO(access_token=access_token, token_type="bearer")

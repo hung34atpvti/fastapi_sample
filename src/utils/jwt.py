@@ -23,9 +23,12 @@ def verify_access_token(token: str):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         email: str = payload.get("sub")
+        user_id: int = payload.get("user_id")
         if email is None:
             return None
-        token_data = TokenDataDTO(email=email)
+        if id is None:
+            return None
+        token_data = TokenDataDTO(email=email, id=user_id)
         return token_data
     except InvalidTokenError:
         return None
