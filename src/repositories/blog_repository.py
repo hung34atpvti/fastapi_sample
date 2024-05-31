@@ -1,7 +1,8 @@
+from sqlalchemy.orm import Session
+
 from ..dtos.blog_create_dto import BlogCreateDTO
 from ..dtos.blog_update_dto import BlogUpdateDTO
 from ..models.blog import Blog
-from sqlalchemy.orm import Session
 
 
 class BlogRepository:
