@@ -1,36 +1,14 @@
-from typing import Union
+import os
 
-from fastapi import FastAPI
-from pydantic import BaseModel
+import uvicorn
+from dotenv import load_dotenv
 
+load_dotenv()
 
-class Item(BaseModel):
-    name: str
-    description: Union[str, None] = None
-    price: float
-    tax: Union[float, None] = None
+host = os.getenv("HOST", "127.0.0.1")
+port = int(os.getenv("PORT", 3000))
+workers = int(os.getenv("WORKERS", 1))
+reload = os.getenv("RELOAD", "False").lower() in ("true", "1", "t")
 
-
-app = FastAPI()
-
-fake_items_db = [{"item_name": "Foo"}, {"item_name": "Bar"}, {"item_name": "Baz"}]
-
-
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
-
-
-@app.get("/fake_items_db")
-async def query_param(skip: int = 0, limit: int = 10, short: Union[bool, int, str] = False, none: str = None):
-    return {"message": fake_items_db[skip: skip + limit], "short": short, "none": none}
-
-
-@app.get("/fake_items_db/{path_id}")
-async def path_param(path_id: int):
-    return {"message": fake_items_db[path_id]}
-
-
-@app.post("/fake_items_db/")
-async def create_item(item: Item):
-    return item
+if __name__ == "__main__":
+    uvicorn.run("src.app:app", host=host, port=port, reload=reload, workers=workers)
